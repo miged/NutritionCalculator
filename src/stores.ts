@@ -1,3 +1,5 @@
+import { writable } from 'svelte/store';
+
 interface Food {
   name: string;
   calories: number;
@@ -6,6 +8,4 @@ interface Food {
   fat_total_g: number;
   protein_g: number;
 }
-
-import { writable } from 'svelte/store';
 export const foods = writable([] as Food[]);

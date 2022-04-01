@@ -4,8 +4,8 @@
 
   function handleClick() {
     $foods = [];
-    const url = 'https://api.calorieninjas.com/v1/nutrition?query=' + input;
-    fetch(url, {
+
+    fetch('https://api.calorieninjas.com/v1/nutrition?query=' + input, {
       headers: {
         'x-api-key': import.meta.env.VITE_API_KEY.toString(),
       },
@@ -20,7 +20,6 @@
 
 <div class="flex flex-row justify-center gap-2">
   <input
-    type="text"
     class="input input-bordered w-full max-w-xl text-lg"
     placeholder="Enter foods..."
     bind:value={input}
