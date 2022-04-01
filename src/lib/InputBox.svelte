@@ -3,6 +3,7 @@
   let input = '';
 
   function handleClick() {
+    $foods = [];
     const url = 'https://api.calorieninjas.com/v1/nutrition?query=' + input;
     fetch(url, {
       headers: {

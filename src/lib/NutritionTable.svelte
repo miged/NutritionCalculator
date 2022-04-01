@@ -2,9 +2,8 @@
   import { foods } from '../stores';
 </script>
 
-<div class="flex justify-center my-3 mx-6">
-  <table class="table table-zebra w-full">
-    <!-- head -->
+<div class="flex justify-center my-3 mx-3">
+  <table class="table table-zebra w-full max-w-4xl">
     <thead>
       <tr>
         <th>Name</th>
