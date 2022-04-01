@@ -1,14 +1,5 @@
 <script lang="ts">
-  interface FoodData {
-    name: string;
-    calories: number;
-    serving_size_g: number;
-    carbohydrates_total_g: number;
-    fat_total_g: number;
-    protein_g: number;
-  }
-
-  let data: FoodData;
+  import { foods } from '../stores';
 </script>
 
 <div class="flex justify-center my-3 mx-6">
@@ -16,9 +7,8 @@
     <!-- head -->
     <thead>
       <tr>
-        <th />
         <th>Name</th>
-        <th>Size</th>
+        <th>Serving Size</th>
         <th>Calories</th>
         <th>Carbs</th>
         <th>Fat</th>
@@ -26,8 +16,16 @@
       </tr>
     </thead>
     <tbody>
-      <!-- row 1 -->
-      <tr />
+      {#each $foods as food (food.name)}
+        <tr>
+          <td>{food.name}</td>
+          <td>{food.serving_size_g}g</td>
+          <td>{food.calories}</td>
+          <td>{food.carbohydrates_total_g}g</td>
+          <td>{food.fat_total_g}g</td>
+          <td>{food.protein_g}g</td>
+        </tr>
+      {/each}
     </tbody>
   </table>
 </div>

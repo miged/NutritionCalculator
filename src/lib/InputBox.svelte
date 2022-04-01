@@ -1,9 +1,9 @@
 <script lang="ts">
+  import { foods } from '../stores';
   let input = '';
 
   function handleClick() {
     const url = 'https://api.calorieninjas.com/v1/nutrition?query=' + input;
-
     fetch(url, {
       headers: {
         'x-api-key': import.meta.env.VITE_API_KEY.toString(),
@@ -11,7 +11,8 @@
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        $foods = data.items;
+        console.log($foods);
       });
   }
 </script>
