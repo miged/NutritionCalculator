@@ -1,21 +1,25 @@
 <script lang="ts">
   import { foods } from '../stores';
 
-  $: total_size = $foods
-    .map((food) => food.serving_size_g)
-    .reduce((a, b) => a + b, 0);
-  $: total_calories = $foods
-    .map((food) => food.calories)
-    .reduce((a, b) => a + b, 0);
-  $: total_carbs = $foods
-    .map((food) => food.carbohydrates_total_g)
-    .reduce((a, b) => a + b, 0);
-  $: total_fats = $foods
-    .map((food) => food.fat_total_g)
-    .reduce((a, b) => a + b, 0);
-  $: total_proteins = $foods
-    .map((food) => food.protein_g)
-    .reduce((a, b) => a + b, 0);
+  $: total = {
+    size: 0,
+    calories: 0,
+    carbs: 0,
+    fats: 0,
+    proteins: 0,
+  };
+
+  $: {
+    const totals = $foods.reduce((acc, food) => {
+      acc.size += food.serving_size_g;
+      acc.calories += food.calories;
+      acc.carbs += food.carbohydrates_total_g;
+      acc.fats += food.fat_total_g;
+      acc.proteins += food.protein_g;
+      return acc;
+    }, total);
+    total = { ...total, ...totals };
+  }
 </script>
 
 <div class="flex justify-center m-3">
@@ -44,11 +48,11 @@
       {#if $foods.length !== 0}
         <tr class="active">
           <td><strong>Total</strong></td>
-          <td>{total_size} g</td>
-          <td>{total_calories}</td>
-          <td>{total_carbs} g</td>
-          <td>{total_fats} g</td>
-          <td>{total_proteins} g</td>
+          <td>{total.size} g</td>
+          <td>{total.calories}</td>
+          <td>{total.carbs} g</td>
+          <td>{total.fats} g</td>
+          <td>{total.proteins} g</td>
         </tr>
       {/if}
     </tbody>
