@@ -22,30 +22,31 @@
   }
 </script>
 
-<div class="flex justify-center m-3">
-  <table class="table w-full max-w-4xl">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Serving Size</th>
-        <th>Calories</th>
-        <th>Carbs</th>
-        <th>Fat</th>
-        <th>Protein</th>
-      </tr>
-    </thead>
-    <tbody>
-      {#each $foods as food (food.name)}
+{#if $foods.length !== 0}
+  <div class="flex justify-center m-3">
+    <table class="table w-full max-w-4xl">
+      <thead>
         <tr>
-          <td>{food.name}</td>
-          <td>{food.serving_size_g} g</td>
-          <td>{food.calories}</td>
-          <td>{food.carbohydrates_total_g} g</td>
-          <td>{food.fat_total_g} g</td>
-          <td>{food.protein_g} g</td>
+          <th>Name</th>
+          <th>Serving Size</th>
+          <th>Calories</th>
+          <th>Carbs</th>
+          <th>Fat</th>
+          <th>Protein</th>
         </tr>
-      {/each}
-      {#if $foods.length !== 0}
+      </thead>
+      <tbody>
+        {#each $foods as food (food.name)}
+          <tr>
+            <td>{food.name}</td>
+            <td>{food.serving_size_g} g</td>
+            <td>{food.calories}</td>
+            <td>{food.carbohydrates_total_g} g</td>
+            <td>{food.fat_total_g} g</td>
+            <td>{food.protein_g} g</td>
+          </tr>
+        {/each}
+
         <tr class="active">
           <td><strong>Total</strong></td>
           <td>{total.size} g</td>
@@ -54,7 +55,7 @@
           <td>{total.fats} g</td>
           <td>{total.proteins} g</td>
         </tr>
-      {/if}
-    </tbody>
-  </table>
-</div>
+      </tbody>
+    </table>
+  </div>
+{/if}
